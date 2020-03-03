@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
 {
     private CharacterController _controller;
     private const float Speed = 10f;
-    [SerializeField] const float Gravity = 1f;
+    [SerializeField] private const float Gravity = 1f;
+    [SerializeField] private const float JumpHeight = 50f;
+    private float _yVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +22,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 direction = new Vector3(horizontalInput,0, 0);
+        Vector3 direction = new Vector3(horizontalInput, 0, 0);
         Vector3 velocity = direction * Speed;
 
         if (_controller.isGrounded)
-            Debug.Log("i'm grounded");
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                _yVelocity = JumpHeight;
+        }
         else
-            velocity.y -= Gravity;
-        
-        
+            _yVelocity -= Gravity;
+
+        velocity.y = _yVelocity;
         _controller.Move(velocity * Time.deltaTime);
     }
 }
