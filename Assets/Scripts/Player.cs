@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     private CharacterController _controller;
+    private float _yVelocity;
     private const float Speed = 10f;
     [SerializeField] private const float Gravity = 1f;
     [SerializeField] private const float JumpHeight = 50f;
-    private float _yVelocity;
 
     // Start is called before the first frame update
     void Start()
