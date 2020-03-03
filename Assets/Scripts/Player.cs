@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 public class Player : MonoBehaviour
 {
     private CharacterController _controller;
-    private float _speed = 10f;
-    
+    private const float Speed = 10f;
+    [SerializeField] const float Gravity = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get horizontal input
         float horizontalInput = Input.GetAxis("Horizontal");
-        //define direction based on that input
         Vector3 direction = new Vector3(horizontalInput,0, 0);
+        Vector3 velocity = direction * Speed;
 
-        //move based that direction
-        transform.Translate(direction * (_speed * Time.deltaTime));
+        if (_controller.isGrounded)
+            Debug.Log("i'm grounded");
+        else
+            velocity.y -= Gravity;
+        
+        
+        _controller.Move(velocity * Time.deltaTime);
     }
 }
