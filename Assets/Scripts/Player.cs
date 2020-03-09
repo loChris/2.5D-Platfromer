@@ -10,13 +10,15 @@ public class Player : MonoBehaviour
     private float _yVelocity;
     private const float Speed = 10f;
     private bool _canDoubleJump = false;
+    private UIManager _uiManager;
+    [SerializeField] private int _coins;
     [SerializeField] private const float Gravity = 1f;
     [SerializeField] private const float JumpHeight = 40f;
 
     // Start is called before the first frame update
     void Start()
     {
-        _controller = GetComponent<CharacterController>();
+        GetGameComponents();
     }
 
     // Update is called once per frame
@@ -49,5 +51,17 @@ public class Player : MonoBehaviour
 
         velocity.y = _yVelocity;
         _controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void GetGameComponents()
+    {
+        _controller = GetComponent<CharacterController>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+    }
+
+    public void AddCoins()
+    {
+        _coins++;
+        _uiManager.UpdateCoinDisplay(_coins);
     }
 }
