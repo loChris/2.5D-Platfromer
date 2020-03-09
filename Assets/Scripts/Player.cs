@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
     [SerializeField] private int _coins;
     [SerializeField] private const float Gravity = 1f;
-    [SerializeField] private const float JumpHeight = 40f;
+    [SerializeField] private const float JumpHeight = 25f;
 
     // Start is called before the first frame update
     void Start()
