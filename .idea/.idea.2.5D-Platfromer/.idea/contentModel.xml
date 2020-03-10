@@ -10,6 +10,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Coin.cs" t="Include" />
+          <e p="MovingPlatform.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />
         </e>
